@@ -1,0 +1,23 @@
+version: "3"
+services:
+  phpcl-mongodb_4_4:
+    container_name: phpcl-mongodb-4-4
+    hostname: demo
+    image: phpcl/mongodb_4_4
+    volumes:
+     - ".:/srv/repo"
+    ports:
+     - "27111:27017"
+    build: ./docker
+    stdin_open: true
+    tty: true
+    networks:
+      app_net_mongodb_4_4:
+        ipv4_address: 172.16.10.11
+
+networks:
+  app_net_mongodb_4_4:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.10.0/24"
